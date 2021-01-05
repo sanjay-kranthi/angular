@@ -10,16 +10,15 @@ import {Item} from './model/Item';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  myForm = new FormGroup({});
-
-  get f() {
-    return this.myForm.controls;
-  }
+  itemform: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private apiService: ApiService) {
-    this.myForm = formBuilder.group({
-      amount: ['', [Validators.min(1000), Validators.max(2000)]]
+    this.itemform = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      accountnumber: ['', [Validators.required, Validators.pattern('^\\d{9,18}$')]],
+      ifsc: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
+      amount: ['', [Validators.required, Validators.min(150), Validators.max(1500)]],
     });
   }
 

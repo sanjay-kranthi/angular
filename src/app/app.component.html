@@ -2,42 +2,103 @@
   <h1>Account Form</h1>
   <hr />
 
-  <form #userForm="ngForm">
+  <form  [formGroup]="itemform" (ngSubmit)="submit(itemform.value)">
 
-    <span class="lead"><strong>Forms Values : userForm.value :</strong></span> {{ userForm.value | json }}
+    <span class="lead"><strong>Forms Values : userForm.value :</strong></span> {{ itemform.value | json }}
     <hr />
 
     <!-- name -->
-    <div class="form-group">
-      <label for="">Name</label>
-      <input type="text" class="form-control" name="name" required ngModel>
+<!--    <div class="form-group">-->
+<!--      <label for="">Name</label>-->
+<!--      <input type="text" class="form-control" name="name" required ngModel>-->
+<!--    </div>-->
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        <mat-form-field class="example-full-width mb-12">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required >
+          <mat-error
+            *ngIf="itemform.get('name').hasError('name') && itemform.get('name').touched">
+            Please enter a name
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
+
 
     <!-- Account Number -->
-    <div class="form-group">
-      <label for="">Account Number</label>
-      <input type="text" pattern="\d*" required oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="16" class="form-control" name="accountnumber" ngModel>
+
+
+<!--    <div class="form-group">-->
+<!--      <label for="">Account Number</label>-->
+<!--      <input type="text" pattern="\d*" required oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="16" class="form-control" name="accountnumber" ngModel>-->
+<!--    </div>-->
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        <mat-form-field class="example-full-width mb-12">
+          <mat-label>Account Number</mat-label>
+          <input matInput formControlName="accountnumber" required >
+          <mat-error
+            *ngIf="itemform.get('accountnumber').hasError('accountnumber') && itemform.get('accountnumber').touched">
+            Please enter a Account Number
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
-    <!-- IFSC -->
-    <div class="form-group">
-      <label for="">IFSC CODE</label>
-      <input type="text" class="form-control" name="ifsc" #validate='ngModel' ngModel pattern="[A-Z]{4}0[A-Z0-9]{6}$" [ngClass]="{red: validate.invalid}" required>
 
+    <!-- IFSC -->
+<!--    <div class="form-group">-->
+<!--      <label for="">IFSC CODE</label>-->
+<!--      <input type="text" class="form-control" name="ifsc" #validate='ngModel' ngModel pattern="[A-Z]{4}0[A-Z0-9]{6}$" [ngClass]="{red: validate.invalid}" required>-->
+
+<!--    </div>-->
+
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        <mat-form-field class="example-full-width mb-12">
+          <mat-label>IFSC CODE</mat-label>
+          <input matInput formControlName="ifsc" required >
+          <mat-error
+            *ngIf="itemform.get('ifsc').hasError('ifsc') && itemform.get('ifsc').touched">
+            Please enter a valid IFSC CODE
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
 
     <!-- Amount -->
-    <div class="form-group">
-      <label for="">Amount</label>
-      <input type="number" class="form-control" name="amount" required ngModel>
-    </div>
+<!--    <div class="form-group">-->
+<!--      <label for="">Amount</label>-->
+<!--      <input type="number" class="form-control" name="amount" required ngModel>-->
+<!--    </div>-->
 
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        <mat-form-field class="example-full-width mb-12">
+          <mat-label>Amount</mat-label>
+          <input matInput formControlName="amount" required >
+          <mat-error
+            *ngIf="itemform.get('amount').hasError('amount') && itemform.get('amount').touched">
+            Please enter a valid Amount
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
     <!-- submit button -->
-    <div >
-      <button type="submit" class="btn btn-primary" (click)="submit(userForm.value)">Submit</button>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+        <button class="mr-3" [disabled]="!itemform.valid " mat-raised-button
+                color="primary">Submit</button>
+      </div>
     </div>
+<!--    <div >-->
+<!--      <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </div>-->
 
   </form>
 

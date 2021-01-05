@@ -6,7 +6,7 @@ import {Item} from '../model/Item';
   providedIn: 'root'
 })
 export class ApiService {
-  apiURL: string = 'api';
+  apiURL: string = 'https://node-express-yhxs4.ondigitalocean.app/api';
 
   constructor(private httpClient: HttpClient) {
   }
