@@ -27,7 +27,12 @@ export class AppComponent {
     this.apiService.createItem(item).subscribe((res) => {
       console.log('Created a item');
       alert('Posted the data');
+      this.refresh();
     });
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }
 
