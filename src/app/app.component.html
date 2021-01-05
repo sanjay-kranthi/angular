@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <h1>Account Form</h1>
+  <hr />
+
+  <form #userForm="ngForm">
+
+    <span class="lead"><strong>Forms Values : userForm.value :</strong></span> {{ userForm.value | json }}
+    <hr />
+
+    <!-- name -->
+    <div class="form-group">
+      <label for="">Name</label>
+      <input type="text" class="form-control" name="name" required ngModel>
+    </div>
+
+    <!-- Account Number -->
+    <div class="form-group">
+      <label for="">Account Number</label>
+      <input type="text" pattern="\d*" required oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="16" class="form-control" name="accountnumber" ngModel>
+    </div>
+
+    <!-- IFSC -->
+    <div class="form-group">
+      <label for="">IFSC CODE</label>
+      <input type="text" class="form-control" name="ifsc" #validate='ngModel' ngModel pattern="[A-Z]{4}0[A-Z0-9]{6}$" [ngClass]="{red: validate.invalid}" required>
+
+    </div>
+
+
+    <!-- Amount -->
+    <div class="form-group">
+      <label for="">Amount</label>
+      <input type="number" class="form-control" name="amount" required ngModel>
+    </div>
+
+
+    <!-- submit button -->
+    <div >
+      <button type="submit" class="btn btn-primary" (click)="submit(userForm.value)">Submit</button>
+    </div>
+
+  </form>
+
+</div>
