@@ -16,7 +16,7 @@ export class AppComponent {
               private apiService: ApiService) {
     this.itemform = this.formBuilder.group({
       name: ['', [Validators.required]],
-      accountnumber: ['', [Validators.required, Validators.pattern('^\\d{9,18}$')]],
+      accountnumber: ['', [Validators.required, Validators.minLength(16), Validators.pattern('^\\d{9,18}$')]],
       ifsc: ['', [Validators.required, Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
       amount: ['', [Validators.required, Validators.min(150), Validators.max(1500)]],
     });
